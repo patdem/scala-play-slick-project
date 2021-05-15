@@ -1,0 +1,77 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# https://www.playframework.com/documentation/latest/ScalaRouting
+# ~~~~
+
+# An example controller showing a sample home page
+GET     /                           controllers.HomeController.index()
+
+# Map static resources from the /public folder to the /assets URL path
+GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)
+
+##Product
+#GET     /getproduct/:id             controllers.ProductController.getProduct(id: Long)
+#POST    /addproduct                 controllers.ProductController.addProduct
+#PUT     /updateproduct/:id          controllers.ProductController.updateProduct(id: Long)
+#DELETE  /deleteproduct/:id          controllers.ProductController.delete(id: Long)
+#
+##Product Handle
+#POST    /addproducthandle           controllers.ProductController.addProductHandle
+#POST    /updateproducthandle        controllers.ProductController.updateProductHandle
+#
+##All products
+#GET     /products                   controllers.ProductController.getProducts
+#
+##Category
+#GET     /getcategory/:id            controllers.CategoryController.getCategory(id: Long)
+#POST    /addcategory                controllers.CategoryController.addCategory
+#PUT     /updatecategory/:id         controllers.CategoryController.updateCategory(id: Long)
+#DELETE  /deletecategory/:id         controllers.CategoryController.deleteCategory(id: Long)
+#
+##Subcategory
+#GET     /getsubcategory/:id         controllers.SubcategoryController.getSubcategory(id: Long)
+#POST    /addcsubategory             controllers.SubcategoryController.addSubcategory
+#PUT     /updatesubcategory/:id      controllers.SubcategoryController.updateSubcategory(id: Long)
+#DELETE  /deletesubcategory/:id      controllers.SubcategoryController.deleteSubcategory(id: Long)
+#
+##User
+#GET     /getuser/:id                controllers.UserController.getUser(id: Long)
+#POST    /adduser                    controllers.UserController.addUser
+#PUT     /updateuser/:id             controllers.UserController.updateUser(id: Long)
+#DELETE  /deleteusery/:id            controllers.UserController.deleteUser(id: Long)
+#
+##Order
+#GET     /getorder/:id               controllers.OrderController.getOrder(id: Long)
+#POST    /addorder                   controllers.OrderController.addOrder
+#PUT     /updateorder/:id            controllers.OrderController.updateOrder(id: Long)
+#DELETE  /deleteorder/:id            controllers.OrderController.deleteOrder(id: Long)
+#
+##Payment
+#GET     /getpayment/:id            controllers.PaymentController.getPayment(id: Long)
+#POST    /addpayment                controllers.PaymentController.addPayment
+#PUT     /updatepayment/:id         controllers.PaymentController.updatePayment(id: Long)
+#DELETE  /deletepayment/:id         controllers.PaymentController.deletePayment(id: Long)
+#
+##Voucher
+#GET     /getvoucher/:id            controllers.VoucherController.getVoucher(id: Long)
+#POST    /addvoucher                controllers.VoucherController.addVoucher
+#PUT     /updatevoucher/:id         controllers.VoucherController.updateVoucher(id: Long)
+#DELETE  /deletevoucher/:id         controllers.VoucherController.deleteVoucher(id: Long)
+#
+##PromoCode
+#GET     /getpromocode/:id          controllers.PromoCodeController.getPromoCode(id: Long)
+#POST    /addpromocode              controllers.PromoCodeController.addPromoCode
+#PUT     /updatepromocode/:id       controllers.PromoCodeController.updatePromoCode(id: Long)
+#DELETE  /deletepromocode/:id       controllers.PromoCodeController.deletePromoCode(id: Long)
+#
+##CreditCard
+#GET     /getcreditcard/:id         controllers.CreditCardController.getCreditCard(id: Long)
+#POST    /addcreditcard             controllers.CreditCardController.addCreditCard
+#PUT     /updatecreditcard/:id      controllers.CreditCardController.updateCreditCard(id: Long)
+#DELETE  /deletecreditcard/:id      controllers.CreditCardController.deleteCreditCard(id: Long)
+#
+##Loyalty Points
+#GET     /getloyaltypoints/:id      controllers.LoyaltyPointsController.getLoyaltyPoints(id: Long)
+#POST    /addloyaltypoints          controllers.LoyaltyPointsController.addLoyaltyPoints
+#PUT     /updateloyaltypoints/:id   controllers.LoyaltyPointsController.updateLoyaltyPoints(id: Long)
+#DELETE  /deleteloyaltypoints/:id   controllers.LoyaltyPointsController.deleteLoyaltyPoints(id: Long)
