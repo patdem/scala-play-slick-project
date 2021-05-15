@@ -5,6 +5,8 @@
 
 # An example controller showing a sample home page
 GET     /                           controllers.HomeController.index()
+GET     /hello                      controllers.HomeController.hello(name: String)
+GET     /allProducts                controllers.ProductController.getAll()
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)
@@ -28,13 +30,13 @@ GET     /assets/*file               controllers.Assets.versioned(path="/public",
 #PUT     /updatecategory/:id         controllers.CategoryController.updateCategory(id: Long)
 #DELETE  /deletecategory/:id         controllers.CategoryController.deleteCategory(id: Long)
 #
-##Subcategory
-#GET     /getsubcategory/:id         controllers.SubcategoryController.getSubcategory(id: Long)
-#POST    /addcsubategory             controllers.SubcategoryController.addSubcategory
-#PUT     /updatesubcategory/:id      controllers.SubcategoryController.updateSubcategory(id: Long)
-#DELETE  /deletesubcategory/:id      controllers.SubcategoryController.deleteSubcategory(id: Long)
-#
 ##User
+#GET     /getuser/:id                controllers.UserController.getUser(id: Long)
+#POST    /adduser                    controllers.UserController.addUser
+#PUT     /updateuser/:id             controllers.UserController.updateUser(id: Long)
+#DELETE  /deleteusery/:id            controllers.UserController.deleteUser(id: Long)
+#
+##User Address
 #GET     /getuser/:id                controllers.UserController.getUser(id: Long)
 #POST    /adduser                    controllers.UserController.addUser
 #PUT     /updateuser/:id             controllers.UserController.updateUser(id: Long)
@@ -70,7 +72,7 @@ GET     /assets/*file               controllers.Assets.versioned(path="/public",
 #PUT     /updatecreditcard/:id      controllers.CreditCardController.updateCreditCard(id: Long)
 #DELETE  /deletecreditcard/:id      controllers.CreditCardController.deleteCreditCard(id: Long)
 #
-##Loyalty Points
+##Basket
 #GET     /getloyaltypoints/:id      controllers.LoyaltyPointsController.getLoyaltyPoints(id: Long)
 #POST    /addloyaltypoints          controllers.LoyaltyPointsController.addLoyaltyPoints
 #PUT     /updateloyaltypoints/:id   controllers.LoyaltyPointsController.updateLoyaltyPoints(id: Long)
