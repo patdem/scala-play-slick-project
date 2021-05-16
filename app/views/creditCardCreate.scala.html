@@ -1,0 +1,25 @@
+@import controllers.CreateCreditCardForm
+@(creditCard: Form[CreateCreditCardForm], users: Seq[User])(implicit request: MessagesRequestHeader, flash: Flash)
+
+@import helper._
+
+@flash.get("success").getOrElse("")
+
+@form(controllers.routes.CreditCardController.createCreditCardHandle) {
+    @helper.CSRF.formField
+    @inputText(creditCard("cardholderName"))
+    @inputText(creditCard("number"))
+    @inputText(creditCard("expDate"))
+    @inputText(creditCard("cvcCode"))
+
+    <label for="user"></label>
+    <select name="userId" id="user">
+    @for(entry <- users) {
+        <option value="@entry.id">@entry.email</option>
+    }
+    </select>
+
+    <div class="buttons">
+        <input type="submit" value="Add CreditCard"/>
+    </div>
+}

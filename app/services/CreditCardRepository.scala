@@ -1,5 +1,6 @@
-package models
+package services
 
+import models.CreditCard
 import play.api.db.slick.DatabaseConfigProvider
 import slick.jdbc.JdbcProfile
 
@@ -7,21 +8,21 @@ import javax.inject.{Inject, Singleton}
 import scala.concurrent.{ExecutionContext, Future}
 
 @Singleton
-class CreditCardRepository @Inject() (dbConfigProvider: DatabaseConfigProvider, val userInfoRepository: UserInfoRepository)
+class CreditCardRepository @Inject() (dbConfigProvider: DatabaseConfigProvider, val userInfoRepository: UserRepository)
                                   (implicit ec: ExecutionContext) {
   val dbConfig = dbConfigProvider.get[JdbcProfile]
 
   import dbConfig._
   import profile.api._
 
-  class CreditCardTable(tag: Tag) extends Table[CreditCard](tag, "credit_card") {
+  class CreditCardTable(tag: Tag) extends Table[CreditCard](tag, "creditCard") {
     def id = column[Long]("id", O.PrimaryKey, O.AutoInc)
 
     def userId = column[Long]("userId")
     def userId_fk = foreignKey("userId_fk", userId, userInfo_)(_.id)
 
     def cardName = column[String]("cardName")
-    def cardNumber = column[Long]("cardNumber")
+    def cardNumber = column[String]("cardNumber")
     def expDate = column[String]("expDate")
     def cvcCode = column[String]("cvcCode")
 
@@ -34,7 +35,7 @@ class CreditCardRepository @Inject() (dbConfigProvider: DatabaseConfigProvider, 
   val creditCardTable = TableQuery[CreditCardTable]
   val userInfo_ = TableQuery[UserInfoTable]
 
-  def create(userId: Long, cardName: String, cardNumber: Long, expDate: String, cvcCode: String): Future[CreditCard]
+  def create(userId: Long, cardName: String, cardNumber: String, expDate: String, cvcCode: String): Future[CreditCard]
   = db.run {
     (creditCardTable.map(c => (c.userId, c.cardName, c.cardNumber, c.expDate, c.cvcCode))
       returning creditCardTable.map(_.id)

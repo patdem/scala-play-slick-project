@@ -1,0 +1,15 @@
+@(userAddresses: Seq[UserAddress])
+
+@for(userAddress <- userAddresses) {
+    @userAddress.id
+    <strong>@userAddress.firstname</strong>
+    @userAddress.lastname
+    @userAddress.userId
+    @userAddress.address
+    @userAddress.zipcode
+    @userAddress.city
+    @userAddress.country
+    <a href="@controllers.routes.UserAddressController.updateUserAddress(userAddress.id)">Edit</a>
+    <a href="@controllers.routes.UserAddressController.deleteUserAddress(userAddress.id)">Delete</a>
+    <br>
+}

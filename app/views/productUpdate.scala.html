@@ -1,0 +1,23 @@
+@import controllers.UpdateProductForm
+@(product: Form[UpdateProductForm], categories: Seq[Category])(implicit request: MessagesRequestHeader, flash: Flash)
+
+@import helper._
+
+@flash.get("success").getOrElse("")
+
+@form(controllers.routes.ProductController.updateProductHandle) {
+    @helper.CSRF.formField
+    <input name="id" id="id" value="@product("id").value" type="hidden" />
+    @inputText(product("name"))
+    @inputText(product("description"))
+
+    <select name="category" id="category">
+    @for(cat <- categories){
+        <option value="@cat.id">@cat.name</option>
+    }
+    </select>
+
+    <div class="buttons">
+        <input type="submit" value="Update Product"/>
+    </div>
+}

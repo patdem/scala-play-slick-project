@@ -1,0 +1,31 @@
+@import controllers.UpdateCreditCardForm
+@(creditCard: Form[UpdateCreditCardForm], categories: Seq[User])(implicit request: MessagesRequestHeader, flash: Flash)
+
+@import helper._
+
+@flash.get("success").getOrElse("")
+
+@form(controllers.routes.CreditCardController.updateCreditCardHandle) {
+    @helper.CSRF.formField
+    <input name="id" id="id" value="@creditCard("id").value" type="hidden" />
+    @inputText(creditCard("cardholderName"))
+    @inputText(creditCard("number"))
+    @inputText(creditCard("expDate"))
+    @inputText(creditCard("cvcCode"))
+
+    <label for="user"></label>
+    <select name="userId" id="user">
+    @for(entity <- categories) {
+        @if(entity.id.toString == creditCard("user").value.getOrElse(0)) {
+            <option value="@entity.id" selected>@entity.email</option>
+        } else {
+            <option value="@entity.id">@entity.email</option>
+        }
+
+    }
+    </select>
+
+    <div class="buttons">
+        <input type="submit" value="Update CreditCard"/>
+    </div>
+}

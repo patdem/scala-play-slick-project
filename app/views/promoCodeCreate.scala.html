@@ -1,0 +1,16 @@
+@import controllers.CreatePromoCodeForm
+@(voucher: Form[CreatePromoCodeForm])(implicit request: MessagesRequestHeader, flash: Flash)
+
+@import helper._
+
+@flash.get("success").getOrElse("")
+
+@form(controllers.routes.PromoCodeController.createPromoCodeHandle) {
+    @helper.CSRF.formField
+    @inputText(voucher("name"))
+    @inputText(voucher("amount"))
+
+    <div class="buttons">
+        <input type="submit" value="Add Voucher"/>
+    </div>
+}

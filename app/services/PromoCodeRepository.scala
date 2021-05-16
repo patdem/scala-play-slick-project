@@ -1,5 +1,6 @@
-package models
+package services
 
+import models.PromoCode
 import play.api.db.slick.DatabaseConfigProvider
 import slick.jdbc.JdbcProfile
 

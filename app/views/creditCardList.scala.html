@@ -1,0 +1,13 @@
+@(creditCards: Seq[CreditCard])
+
+@for(creditCard <- creditCards) {
+    @creditCard.id
+    <strong>@creditCard.cardName</strong>
+    @creditCard.userId
+    @creditCard.cardNumber
+    @creditCard.expDate
+    @creditCard.cvcCode
+    <a href="@controllers.routes.CreditCardController.updateCreditCard(creditCard.id)">Edit</a>
+    <a href="@controllers.routes.CreditCardController.deleteCreditCard(creditCard.id)">Delete</a>
+    <br>
+}

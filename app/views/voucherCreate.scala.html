@@ -1,0 +1,15 @@
+@import controllers.CreateVoucherForm
+@(voucher: Form[CreateVoucherForm])(implicit request: MessagesRequestHeader, flash: Flash)
+
+@import helper._
+
+@flash.get("success").getOrElse("")
+
+@form(controllers.routes.VoucherController.createVoucherHandle) {
+    @helper.CSRF.formField
+    @inputText(voucher("amount"))
+
+    <div class="buttons">
+        <input type="submit" value="Add Voucher"/>
+    </div>
+}

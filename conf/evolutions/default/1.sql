@@ -36,8 +36,8 @@ CREATE TABLE "creditCard" (
     "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
     "userId" INTEGER NOT NULL,
     "cardName" VARCHAR NOT NULL,
-    "cardNumber" INTEGER NOT NULL,
-    "expDate" INTEGER NOT NULL,
+    "cardNumber" VARCHAR NOT NULL,
+    "expDate" VARCHAR NOT NULL,
     "cvcCode" VARCHAR NOT NULL,
     FOREIGN KEY(userId) references userInfo(id)
 );

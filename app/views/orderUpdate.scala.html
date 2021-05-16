@@ -1,0 +1,59 @@
+@import controllers.UpdateOrderForm
+@(order: Form[UpdateOrderForm], users: Seq[User], payments: Seq[Payment], vouchers: Seq[Voucher], promoCodes: Seq[PromoCode])(implicit request: MessagesRequestHeader, flash: Flash)
+
+@import helper._
+
+@flash.get("success").getOrElse("")
+
+@form(controllers.routes.OrderController.updateOrderHandle) {
+    @helper.CSRF.formField
+    <input name="id" id="id" value="@order("id").value" type="hidden" />
+
+    <label for="user"></label>
+    <select name="userId" id="user">
+    @for(entity <- users) {
+        @if(entity.id.toString == order("user").value.getOrElse(0)) {
+            <option value="@entity.id" selected>@entity.email</option>
+        } else {
+            <option value="@entity.id">@entity.email</option>
+        }
+    }
+    </select>
+
+    <label for="payment"></label>
+    <select name="paymentId" id="payment">
+    @for(entity <- payments) {
+        @if(entity.id.toString == order("payment").value.getOrElse(0)) {
+            <option value="@entity.id" selected>@entity.id</option>
+        } else {
+            <option value="@entity.id">@entity.id</option>
+        }
+    }
+    </select>
+
+    <label for="voucher"></label>
+    <select name="voucherId" id="voucher">
+    @for(entity <- vouchers) {
+        @if(entity.id.toString == order("voucher").value.getOrElse(0)) {
+            <option value="@entity.id" selected>@entity.id</option>
+        } else {
+            <option value="@entity.id">@entity.id</option>
+        }
+    }
+    </select>
+
+    <label for="promoCode"></label>
+    <select name="promoCodeId" id="promoCode">
+    @for(entity <- promoCodes) {
+        @if(entity.id.toString == order("promoCode").value.getOrElse(0)) {
+            <option value="@entity.id" selected>@entity.id</option>
+        } else {
+            <option value="@entity.id">@entity.id</option>
+        }
+    }
+    </select>
+
+    <div class="buttons">
+        <input type="submit" value="Update Order"/>
+    </div>
+}

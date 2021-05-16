@@ -1,0 +1,10 @@
+@(baskets: Seq[Basket])
+
+@for(basket <- baskets) {
+    <strong>@basket.id</strong>
+    @basket.userId
+    @basket.productId
+    <a href="@controllers.routes.BasketController.updateBasket(basket.id)">Edit</a>
+    <a href="@controllers.routes.BasketController.deleteBasket(basket.id)">Delete</a>
+    <br>
+}

@@ -1,5 +1,6 @@
-package models
+package services
 
+import models.Category
 import play.api.db.slick.DatabaseConfigProvider
 import slick.jdbc.JdbcProfile
 
@@ -42,9 +43,9 @@ class CategoryRepository @Inject()(dbConfigProvider: DatabaseConfigProvider)(imp
     categoryTable.result
   }
 
-  def update(id: Long, new_category: Category): Future[Int] = db.run {
-    val new_update: Category = new_category.copy(id)
-    categoryTable.filter(_.id === id).update(new_update)
+  def update(id:Long, new_category: Category): Future[Int] = {
+    val categoryToUpdate: Category = new_category.copy(id)
+    db.run(categoryTable.filter(_.id === id).update(categoryToUpdate))
   }
 
   def delete(id: Long): Future[Int] = db.run {

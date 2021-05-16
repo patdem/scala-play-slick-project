@@ -1,0 +1,28 @@
+@import controllers.CreateBasketForm
+@(order: Form[CreateBasketForm], users: Seq[User], products: Seq[Product])(implicit request: MessagesRequestHeader, flash: Flash)
+
+@import helper._
+
+@flash.get("success").getOrElse("")
+
+@form(controllers.routes.BasketController.createBasketHandle) {
+    @helper.CSRF.formField
+
+    <label for="user"></label>
+    <select name="userId" id="user">
+    @for(entry <- users) {
+        <option value="@entry.id">@entry.email</option>
+    }
+    </select>
+
+    <label for="product"></label>
+    <select name="productId" id="product">
+    @for(entry <- products) {
+        <option value="@entry.id">@entry.name</option>
+    }
+    </select>
+
+    <div class="buttons">
+        <input type="submit" value="Add Order"/>
+    </div>
+}

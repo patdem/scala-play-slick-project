@@ -1,0 +1,37 @@
+@import controllers.UpdateBasketForm
+@(order: Form[UpdateBasketForm], users: Seq[User], products: Seq[Product])(implicit request: MessagesRequestHeader, flash: Flash)
+
+@import helper._
+
+@flash.get("success").getOrElse("")
+
+@form(controllers.routes.BasketController.updateBasketHandle) {
+    @helper.CSRF.formField
+    <input name="id" id="id" value="@order("id").value" type="hidden" />
+
+    <label for="user"></label>
+    <select name="userId" id="user">
+    @for(entity <- users) {
+        @if(entity.id.toString == order("user").value.getOrElse(0)) {
+            <option value="@entity.id" selected>@entity.email</option>
+        } else {
+            <option value="@entity.id">@entity.email</option>
+        }
+    }
+    </select>
+
+    <label for="product"></label>
+    <select name="productId" id="product">
+    @for(entity <- products) {
+        @if(entity.id.toString == order("product").value.getOrElse(0)) {
+            <option value="@entity.id" selected>@entity.id</option>
+        } else {
+            <option value="@entity.id">@entity.id</option>
+        }
+    }
+    </select>
+
+    <div class="buttons">
+        <input type="submit" value="Update Order"/>
+    </div>
+}

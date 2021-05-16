@@ -1,5 +1,6 @@
-package models
+package services
 
+import models.UserAddress
 import play.api.db.slick.DatabaseConfigProvider
 import slick.jdbc.JdbcProfile
 
@@ -8,7 +9,7 @@ import scala.concurrent.{ExecutionContext, Future}
 
 @Singleton
 class UserAddressRepository @Inject()(dbConfigProvider: DatabaseConfigProvider,
-                                      val userInfoRepository: UserInfoRepository)
+                                      val userInfoRepository: UserRepository)
                                      (implicit ec: ExecutionContext) {
   val dbConfig = dbConfigProvider.get[JdbcProfile]
 

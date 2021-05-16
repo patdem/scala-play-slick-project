@@ -1,0 +1,10 @@
+@(promoCodes: Seq[PromoCode])
+
+@for(promoCode <- promoCodes) {
+    <strong>@promoCode.id</strong>
+    @promoCode.name
+    @promoCode.amount
+    <a href="@controllers.routes.PromoCodeController.updatePromoCode(promoCode.id)">Edit</a>
+    <a href="@controllers.routes.PromoCodeController.deletePromoCode(promoCode.id)">Delete</a>
+    <br>
+}

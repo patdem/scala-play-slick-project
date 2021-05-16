@@ -1,5 +1,6 @@
-package models
+package services
 
+import models.Product
 import play.api.db.slick.DatabaseConfigProvider
 import slick.jdbc.JdbcProfile
 
@@ -49,8 +50,9 @@ class ProductRepository @Inject() (dbConfigProvider: DatabaseConfigProvider, val
     productTable.result
   }
 
-  def update(id: Long, new_name: String): Future[Int] = db.run {
-    productTable.filter(_.id === id).map(_.name).update(new_name)
+  def update(id: Long, new_product: Product): Future[Int] = db.run {
+    val productToUpdate: Product = new_product.copy(id)
+    productTable.filter(_.id === id).update(productToUpdate)
   }
 
   def delete(id: Long): Future[Int] = db.run {

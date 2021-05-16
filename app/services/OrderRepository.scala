@@ -1,5 +1,6 @@
-package models
+package services
 
+import models.Order
 import play.api.db.slick.DatabaseConfigProvider
 import slick.jdbc.JdbcProfile
 
@@ -8,10 +9,10 @@ import scala.concurrent.{ExecutionContext, Future}
 
 @Singleton
 class OrderRepository @Inject()(dbConfigProvider: DatabaseConfigProvider,
-                                      val userInfoRepository: UserInfoRepository,
-                                      val paymentRepository: PaymentRepository,
-                                      val voucherRepository: VoucherRepository,
-                                      val promoCodeRepository: PromoCodeRepository)
+                                val userInfoRepository: UserRepository,
+                                val paymentRepository: PaymentRepository,
+                                val voucherRepository: VoucherRepository,
+                                val promoCodeRepository: PromoCodeRepository)
                                      (implicit ec: ExecutionContext) {
   val dbConfig = dbConfigProvider.get[JdbcProfile]
 
@@ -36,10 +37,10 @@ class OrderRepository @Inject()(dbConfigProvider: DatabaseConfigProvider,
     override def * = (id, userId, paymentId, voucherId, promoCodeId) <> ((Order.apply _).tupled, Order.unapply)
   }
 
-  import userInfoRepository.UserInfoTable
   import paymentRepository.PaymentTable
-  import voucherRepository.VoucherTable
   import promoCodeRepository.PromoCodeTable
+  import userInfoRepository.UserInfoTable
+  import voucherRepository.VoucherTable
 
   val orderTable = TableQuery[OrderTable]
   val userInfo_ = TableQuery[UserInfoTable]

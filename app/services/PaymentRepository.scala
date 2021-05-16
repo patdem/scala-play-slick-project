@@ -1,5 +1,6 @@
-package models
+package services
 
+import models.Payment
 import play.api.db.slick.DatabaseConfigProvider
 import slick.jdbc.JdbcProfile
 
@@ -7,7 +8,7 @@ import javax.inject.{Inject, Singleton}
 import scala.concurrent.{ExecutionContext, Future}
 
 @Singleton
-class PaymentRepository @Inject() (dbConfigProvider: DatabaseConfigProvider, val userInfoRepository: UserInfoRepository,
+class PaymentRepository @Inject() (dbConfigProvider: DatabaseConfigProvider, val userInfoRepository: UserRepository,
                                    val creditCardRepository: CreditCardRepository)(implicit ec: ExecutionContext) {
   val dbConfig = dbConfigProvider.get[JdbcProfile]
 
@@ -30,8 +31,8 @@ class PaymentRepository @Inject() (dbConfigProvider: DatabaseConfigProvider, val
       ((Payment.apply _).tupled, Payment.unapply)
   }
 
-  import userInfoRepository.UserInfoTable
   import creditCardRepository.CreditCardTable
+  import userInfoRepository.UserInfoTable
 
   val paymentTable = TableQuery[PaymentTable]
   val userInfo_ = TableQuery[UserInfoTable]

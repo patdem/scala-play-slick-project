@@ -1,0 +1,17 @@
+@import controllers.UpdatePromoCodeForm
+@(promoCode: Form[UpdatePromoCodeForm])(implicit request: MessagesRequestHeader, flash: Flash)
+
+@import helper._
+
+@flash.get("success").getOrElse("")
+
+@form(controllers.routes.PromoCodeController.updatePromoCodeHandle) {
+    @helper.CSRF.formField
+    <input name="id" id="id" value="@promoCode("id").value" type="hidden" />
+    @inputText(promoCode("name"))
+    @inputText(promoCode("amount"))
+
+    <div class="buttons">
+        <input type="submit" value="Update Voucher"/>
+    </div>
+}

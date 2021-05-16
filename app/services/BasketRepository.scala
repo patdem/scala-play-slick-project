@@ -1,5 +1,6 @@
-package models
+package services
 
+import models.Basket
 import play.api.db.slick.DatabaseConfigProvider
 import slick.jdbc.JdbcProfile
 
@@ -8,8 +9,8 @@ import scala.concurrent.{ExecutionContext, Future}
 
 @Singleton
 class BasketRepository @Inject()(dbConfigProvider: DatabaseConfigProvider,
-                                val userInfoRepository: UserInfoRepository,
-                                val productRepository: ProductRepository)
+                                 val userInfoRepository: UserRepository,
+                                 val productRepository: ProductRepository)
                                (implicit ec: ExecutionContext) {
   val dbConfig = dbConfigProvider.get[JdbcProfile]
 
@@ -28,8 +29,8 @@ class BasketRepository @Inject()(dbConfigProvider: DatabaseConfigProvider,
     override def * = (id, userId, productId) <> ((Basket.apply _).tupled, Basket.unapply)
   }
 
-  import userInfoRepository.UserInfoTable
   import productRepository.ProductTable
+  import userInfoRepository.UserInfoTable
 
   val basketTable = TableQuery[BasketTable]
   val userInfo_ = TableQuery[UserInfoTable]
