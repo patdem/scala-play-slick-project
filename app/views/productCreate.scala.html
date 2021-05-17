@@ -5,7 +5,7 @@
 
 @flash.get("success").getOrElse("")
 
-@form(controllers.routes.ProductController.createProductHandle()) {
+@form(controllers.routes.ProductController.createProductHandle) {
     @helper.CSRF.formField
     @inputText(product("name"))
     @inputText(product("description"))

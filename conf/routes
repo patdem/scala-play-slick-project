@@ -23,7 +23,7 @@ GET     /category/delete/:id         controllers.CategoryController.deleteCatego
 GET     /product/list                controllers.ProductController.listProducts
 GET     /product/get/:id             controllers.ProductController.getProductById(id: Long)
 GET     /product/create              controllers.ProductController.createProduct
-POST    /product/create/handler      controllers.ProductController.createProductHandle()
+POST    /product/create/handler      controllers.ProductController.createProductHandle
 GET     /product/update/:id          controllers.ProductController.updateProduct(id: Long)
 POST    /product/update/handler      controllers.ProductController.updateProductHandle
 GET     /product/delete/:id          controllers.ProductController.deleteProduct(id: Long)
@@ -32,7 +32,7 @@ GET     /product/delete/:id          controllers.ProductController.deleteProduct
 GET     /user/list                   controllers.UserInfoController.listUsers
 GET     /user/get/:id                controllers.UserInfoController.getUserById(id: Long)
 GET     /user/create                 controllers.UserInfoController.createUser
-POST    /user/create/handler         controllers.UserInfoController.createUserHandle()
+POST    /user/create/handler         controllers.UserInfoController.createUserHandle
 GET     /user/update/:id             controllers.UserInfoController.updateUser(id: Long)
 POST    /user/update/handler         controllers.UserInfoController.updateUserHandle
 GET     /user/delete/:id             controllers.UserInfoController.deleteUser(id: Long)
@@ -41,7 +41,7 @@ GET     /user/delete/:id             controllers.UserInfoController.deleteUser(i
 GET     /address/list                controllers.UserAddressController.listUserAddresses
 GET     /address/get/:id             controllers.UserAddressController.getUserAddressById(id: Long)
 GET     /address/create              controllers.UserAddressController.createUserAddress
-POST    /address/create/handler      controllers.UserAddressController.createUserAddressHandle()
+POST    /address/create/handler      controllers.UserAddressController.createUserAddressHandle
 GET     /address/update/:id          controllers.UserAddressController.updateUserAddress(id: Long)
 POST    /address/update/handler      controllers.UserAddressController.updateUserAddressHandle
 GET     /address/delete/:id          controllers.UserAddressController.deleteUserAddress(id: Long)
@@ -99,3 +99,76 @@ POST    /basket/create/handler       controllers.BasketController.createBasketHa
 GET     /basket/update/:id           controllers.BasketController.updateBasket(id: Long)
 POST    /basket/update/handler       controllers.BasketController.updateBasketHandle
 GET     /basket/delete/:id           controllers.BasketController.deleteBasket(id: Long)
+
+
+###################### REST API
+
+#Category
+GET     /api/category/list           controllersapi.CategoryController.listCategories
+GET     /api/category/get/:id        controllersapi.CategoryController.getCategoryById(id: Long)
+POST    /api/category/create         controllersapi.CategoryController.createCategory
+PUT     /api/category/update         controllersapi.CategoryController.updateCategory
+DELETE  /api/category/delete/:id     controllersapi.CategoryController.deleteCategory(id: Long)
+
+#Product
+GET     /api/product/list            controllersapi.ProductController.listProducts
+GET     /api/product/get/:id         controllersapi.ProductController.getProductById(id: Long)
+POST    /api/product/create          controllersapi.ProductController.createProduct
+PUT     /api/product/update          controllersapi.ProductController.updateProduct
+DELETE  /api/product/delete/:id      controllersapi.ProductController.deleteProduct(id: Long)
+
+#User
+GET     /api/user/list               controllersapi.UserController.listUsers
+GET     /api/user/get/:id            controllersapi.UserController.getUserById(id: Long)
+POST    /api/user/create             controllersapi.UserController.createUser
+PUT     /api/user/update             controllersapi.UserController.updateUser
+DELETE  /api/user/delete/:id         controllersapi.UserController.deleteUser(id: Long)
+
+#User Address
+GET     /api/address/list            controllersapi.UserAddressController.listUserAddresses
+GET     /api/address/get/:id         controllersapi.UserAddressController.getUserAddressById(id: Long)
+POST    /api/address/create          controllersapi.UserAddressController.createUserAddress
+PUT     /api/address/update          controllersapi.UserAddressController.updateUserAddress
+DELETE  /api/address/delete/:id      controllersapi.UserAddressController.deleteUserAddress(id: Long)
+
+#CreditCard
+GET     /api/creditcard/list         controllersapi.CreditCardController.listCreditCards
+GET     /api/creditcard/get/:id      controllersapi.CreditCardController.getCreditCardById(id: Long)
+POST    /api/creditcard/create       controllersapi.CreditCardController.createCreditCard
+PUT     /api/creditcard/update       controllersapi.CreditCardController.updateCreditCard
+DELETE  /api/creditcard/delete/:id   controllersapi.CreditCardController.deleteCreditCard(id: Long)
+
+#Payment
+GET     /api/payment/list            controllersapi.PaymentController.listPayments
+GET     /api/payment/get/:id         controllersapi.PaymentController.getPaymentById(id: Long)
+POST    /api/payment/create          controllersapi.PaymentController.createPayment
+PUT     /api/payment/update          controllersapi.PaymentController.updatePayment
+DELETE  /api/payment/delete/:id      controllersapi.PaymentController.deletePayment(id: Long)
+
+#Voucher
+GET     /api/voucher/list            controllersapi.VoucherController.listVouchers
+GET     /api/voucher/get/:id         controllersapi.VoucherController.getVoucherById(id: Long)
+POST    /api/voucher/create          controllersapi.VoucherController.createVoucher
+PUT     /api/voucher/update          controllersapi.VoucherController.updateVoucher
+DELETE  /api/voucher/delete/:id      controllersapi.VoucherController.deleteVoucher(id: Long)
+
+#PromoCode
+GET     /api/promocode/list          controllersapi.PromoCodeController.listPromoCodes
+GET     /api/promocode/get/:id       controllersapi.PromoCodeController.getPromoCodeById(id: Long)
+POST    /api/promocode/create        controllersapi.PromoCodeController.createPromoCode
+PUT     /api/promocode/update        controllersapi.PromoCodeController.updatePromoCode
+DELETE  /api/promocode/delete/:id    controllersapi.PromoCodeController.deletePromoCode(id: Long)
+
+#Order
+GET     /api/order/list              controllersapi.OrderController.listOrders
+GET     /api/order/get/:id           controllersapi.OrderController.getOrderById(id: Long)
+POST    /api/order/create            controllersapi.OrderController.createOrder
+PUT     /api/order/update            controllersapi.OrderController.updateOrder
+DELETE  /api/order/delete/:id        controllersapi.OrderController.deleteOrder(id: Long)
+
+#Basket
+GET     /api/basket/list             controllersapi.BasketController.listBaskets
+GET     /api/basket/get/:id          controllersapi.BasketController.getBasketById(id: Long)
+POST    /api/basket/create           controllersapi.BasketController.createBasket
+PUT     /api/basket/update           controllersapi.BasketController.updateBasket
+DELETE  /api/basket/delete/:id       controllersapi.BasketController.deleteBasket(id: Long)
