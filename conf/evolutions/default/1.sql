@@ -82,6 +82,41 @@ CREATE TABLE "basket" (
     FOREIGN KEY(productId) references product(id)
 );
 
+CREATE TABLE "userAuth"
+(
+    "id"          INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    "providerId"  VARCHAR NOT NULL,
+    "providerKey" VARCHAR NOT NULL,
+    "email"       VARCHAR NOT NULL
+);
+
+CREATE TABLE "authToken"
+(
+    "id"     INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    "userId" INT     NOT NULL,
+    FOREIGN KEY (userId) references userAuth (id)
+);
+
+CREATE TABLE "passwordInfo"
+(
+    "id"          INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    "providerId"  VARCHAR NOT NULL,
+    "providerKey" VARCHAR NOT NULL,
+    "hasher"      VARCHAR NOT NULL,
+    "password"    VARCHAR NOT NULL,
+    "salt"        VARCHAR
+);
+
+CREATE TABLE "oAuth2Info"
+(
+    "id"          INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    "providerId"  VARCHAR NOT NULL,
+    "providerKey" VARCHAR NOT NULL,
+    "accessToken" VARCHAR NOT NULL,
+    "tokenType"   VARCHAR,
+    "expiresIn"   INTEGER
+);
+
 -- !Downs
 
 DROP TABLE "category";
@@ -94,3 +129,7 @@ DROP TABLE "voucher";
 DROP TABLE "promoCode";
 DROP TABLE "order";
 DROP TABLE "basket";
+DROP TABLE "userAuth";
+DROP TABLE "authToken";
+DROP TABLE "passwordInfo";
+DROP TABLE "oAuth2Info";

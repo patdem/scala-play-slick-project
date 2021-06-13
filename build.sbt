@@ -1,6 +1,3 @@
-import sbt.project
-import sbt.Keys.resolvers
-
 name := """shop"""
 organization := "pl.edu.uj"
 
@@ -32,10 +29,13 @@ libraryDependencies ++= Seq(
   "net.codingwell" %% "scala-guice" % "5.0.1"
 )
 
+libraryDependencies += ehcache
+
 resolvers ++= Seq(
   "scalaz-bintray" at "https://dl.bintray.com/scalaz/releases",
   "Akka Snapshot Repository" at "https://repo.akka.io/snapshots/",
-  "Typesafe repository" at "https://repo.typesafe.com/typesafe/releases"
+  "Typesafe repository" at "https://repo.typesafe.com/typesafe/releases",
+  "Atlassian's Maven Public Repository" at "https://packages.atlassian.com/maven-public/"
 )
 // Adds additional packages into Twirl
 //TwirlKeys.templateImports += "pl.edu.uj.controllers._"
