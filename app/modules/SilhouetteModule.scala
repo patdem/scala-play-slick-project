@@ -10,7 +10,7 @@ import com.mohiva.play.silhouette.api.{Environment, EventBus, Silhouette, Silhou
 import com.mohiva.play.silhouette.crypto.{JcaCrypter, JcaCrypterSettings, JcaSigner, JcaSignerSettings}
 import com.mohiva.play.silhouette.impl.authenticators._
 import com.mohiva.play.silhouette.impl.providers._
-import com.mohiva.play.silhouette.impl.providers.oauth2.{GitHubProvider, GitLabProvider, GoogleProvider}
+import com.mohiva.play.silhouette.impl.providers.oauth2.{GitHubProvider, GoogleProvider}
 import com.mohiva.play.silhouette.impl.providers.state.{CsrfStateItemHandler, CsrfStateSettings}
 import com.mohiva.play.silhouette.impl.util._
 import com.mohiva.play.silhouette.password.{BCryptPasswordHasher, BCryptSha256PasswordHasher}
@@ -121,8 +121,8 @@ class SilhouetteModule extends AbstractModule with ScalaModule {
     ClassTag[PasswordInfo](PasswordInfo.getClass)
 
   @Provides
-  def provideSocialProviderRegistry(googleProvider: GoogleProvider, gitHubProvider: GitHubProvider, gitLabProvider: GitLabProvider): SocialProviderRegistry =
-    SocialProviderRegistry(Seq(googleProvider, gitHubProvider, gitLabProvider))
+  def provideSocialProviderRegistry(googleProvider: GoogleProvider, gitHubProvider: GitHubProvider): SocialProviderRegistry =
+    SocialProviderRegistry(Seq(googleProvider, gitHubProvider))
 
   @Provides
   def provideGoogleProvider(httpLayer: HTTPLayer,
@@ -135,13 +135,6 @@ class SilhouetteModule extends AbstractModule with ScalaModule {
                             socialStateHandler: SocialStateHandler,
                             configuration: Configuration): GitHubProvider =
     new GitHubProvider(httpLayer, socialStateHandler, configuration.underlying.as[OAuth2Settings]("silhouette.github"))
-
-  @Provides
-  def provideDiscordProvider(httpLayer: HTTPLayer,
-                             socialStateHandler: SocialStateHandler,
-                             configuration: Configuration): GitLabProvider =
-    new GitLabProvider(httpLayer, socialStateHandler, configuration.underlying.as[OAuth2Settings]("silhouette.gitlab"))
-
 
   @Provides
   def provideSocialStateHandler(@Named("social-state-signer") signer: Signer,

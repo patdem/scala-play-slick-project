@@ -10,6 +10,13 @@ GET     /hello                      controllers.HomeController.hello(name: Strin
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)
 
+# Authentication
+#POST        /signUp                 controllers.SignUpController.signUp
+#POST        /signIn                 controllers.SignInController.signIn
+#POST        /signOut                controllers.SignInController.signOut
+GET         /authenticate/:provider controllers.SocialAuthController.authenticate(provider: String)
+
+
 #Category
 GET     /category/list               controllers.CategoryController.listCategories
 GET     /category/get/:id            controllers.CategoryController.getCategoryById(id: Long)
