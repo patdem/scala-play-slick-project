@@ -19,16 +19,19 @@ class SocialAuthController @Inject()(scc: DefaultSilhouetteControllerComponents,
           case Left(result) => {
             Future.successful(result)
           }
-          case Right(authInfo) => for {
-            profile <- p.retrieveProfile(authInfo)
-            _ <- userRepository.create(profile.loginInfo.providerID, profile.loginInfo.providerKey, profile.email.getOrElse(""))
-            _ <- authInfoRepository.save(profile.loginInfo, authInfo)
-            authenticator <- authenticatorService.create(profile.loginInfo)
-            value <- authenticatorService.init(authenticator)
-            result <- authenticatorService.embed(value, Redirect("http://localhost:3000"))
-          } yield {
-            val Token(name, value) = CSRF.getToken.get
-            result.withCookies(Cookie(name, value, httpOnly = false), Cookie("email", profile.email.get,httpOnly = false))
+          case Right(authInfo) => {
+            for {
+              profile <- p.retrieveProfile(authInfo)
+              _ <- userRepository.create(profile.loginInfo.providerID, profile.loginInfo.providerKey, profile.email.getOrElse(""))
+              _ <- authInfoRepository.save(profile.loginInfo, authInfo)
+              authenticator <- authenticatorService.create(profile.loginInfo)
+              value <- authenticatorService.init(authenticator)
+              result <- authenticatorService.embed(value, Redirect("http://localhost:3000"))
+            } yield {
+              val Token(name, value) = CSRF.getToken.get
+              logger.error(profile.toString)
+              result.withCookies(Cookie(name, value, httpOnly = false), Cookie("email", profile.email.get, httpOnly = false))
+            }
           }
         }
       case _ => {
