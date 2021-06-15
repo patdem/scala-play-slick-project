@@ -21,7 +21,7 @@ class ProductRepository @Inject() (dbConfigProvider: DatabaseConfigProvider, val
     def description = column[String]("description")
 
     def category = column[Long]("category")
-    def category_fk = foreignKey("category_fk", category, category_)(_.id)
+    def categoryFk = foreignKey("categoryFk", category, category_)(_.id)
 
     override def * = (id, name, description, category) <> ((Product.apply _).tupled, Product.unapply)
   }

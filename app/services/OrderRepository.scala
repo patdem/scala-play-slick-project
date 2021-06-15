@@ -23,16 +23,16 @@ class OrderRepository @Inject()(dbConfigProvider: DatabaseConfigProvider,
     def id = column[Long]("id", O.PrimaryKey, O.AutoInc)
 
     def userId = column[Long]("userId")
-    def userId_fk = foreignKey("userId_fk", userId, userInfo_)(_.id)
+    def userIdFk = foreignKey("userIdFk", userId, userInfo_)(_.id)
 
     def paymentId = column[Long]("paymentId")
-    def paymentId_fk = foreignKey("paymentId_fk", paymentId, payment_)(_.id)
+    def paymentIdFk = foreignKey("paymentIdFk", paymentId, payment_)(_.id)
 
     def voucherId = column[Long]("voucherId")
-    def voucherId_fk = foreignKey("voucherId_fk", voucherId, voucher_)(_.id)
+    def voucherIdFk = foreignKey("voucherIdFk", voucherId, voucher_)(_.id)
 
     def promoCodeId = column[Long]("promoCodeId")
-    def promoCodeId_fk = foreignKey("voucherId_fk", promoCodeId, promoCode_)(_.id)
+    def promoCodeIdFk = foreignKey("voucherIdFk", promoCodeId, promoCode_)(_.id)
 
     override def * = (id, userId, paymentId, voucherId, promoCodeId) <> ((Order.apply _).tupled, Order.unapply)
   }
