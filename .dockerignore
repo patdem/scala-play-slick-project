@@ -1,0 +1,14 @@
+README.md
+.gitignore
+
+target
+logs
+test
+/.idea
+/.idea_modules
+/.classpath
+/.project
+/.settings
+/RUNNING_PID
+/.bsp
+/.g8

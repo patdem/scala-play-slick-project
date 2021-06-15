@@ -22,11 +22,11 @@ class SocialAuthController @Inject()(scc: DefaultSilhouetteControllerComponents,
           case Right(authInfo) => {
             for {
               profile <- p.retrieveProfile(authInfo)
-              _ <- userRepository.create(profile.loginInfo.providerID, profile.loginInfo.providerKey, profile.email.getOrElse(""))
+              _ <- userRepository.create(profile.loginInfo.providerID, profile.loginInfo.providerKey, profile.email.getOrElse("UNKNOWN"))
               _ <- authInfoRepository.save(profile.loginInfo, authInfo)
               authenticator <- authenticatorService.create(profile.loginInfo)
               value <- authenticatorService.init(authenticator)
-              result <- authenticatorService.embed(value, Redirect("http://localhost:3000"))
+              result <- authenticatorService.embed(value, Redirect(scala.util.Properties.envOrElse("FRONTEND_URL", "http://localhost:3000")))
             } yield {
               val Token(name, value) = CSRF.getToken.get
               logger.error(profile.toString)
