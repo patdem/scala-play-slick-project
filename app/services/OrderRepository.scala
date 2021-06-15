@@ -64,9 +64,9 @@ class OrderRepository @Inject()(dbConfigProvider: DatabaseConfigProvider,
     orderTable.result
   }
 
-  def update(id: Long, new_order: Order): Future[Int] = db.run {
-    val new_update: Order = new_order.copy(id)
-    orderTable.filter(_.id === id).update(new_update)
+  def update(id: Long, newOrder: Order): Future[Int] = db.run {
+    val newUpdate: Order = newOrder.copy(id)
+    orderTable.filter(_.id === id).update(newUpdate)
   }
 
   def delete(id: Long): Future[Int] = db.run {

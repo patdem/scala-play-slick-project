@@ -56,9 +56,9 @@ class CreditCardRepository @Inject() (dbConfigProvider: DatabaseConfigProvider, 
     creditCardTable.result
   }
 
-  def update(id: Long, new_credit_card: CreditCard): Future[Int] = db.run {
-    val new_card: CreditCard = new_credit_card.copy(id)
-    creditCardTable.filter(_.id === id).update(new_card)
+  def update(id: Long, newCredit_card: CreditCard): Future[Int] = db.run {
+    val newCard: CreditCard = newCredit_card.copy(id)
+    creditCardTable.filter(_.id === id).update(newCard)
   }
 
   def delete(id: Long): Future[Int] = db.run {

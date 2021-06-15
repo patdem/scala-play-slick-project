@@ -44,9 +44,9 @@ class PromoCodeRepository @Inject()(dbConfigProvider: DatabaseConfigProvider)(im
     promoCodeTable.result
   }
 
-  def update(id: Long, new_category: PromoCode): Future[Int] = db.run {
-    val new_update: PromoCode = new_category.copy(id)
-    promoCodeTable.filter(_.id === id).update(new_update)
+  def update(id: Long, newCategory: PromoCode): Future[Int] = db.run {
+    val newUpdate: PromoCode = newCategory.copy(id)
+    promoCodeTable.filter(_.id === id).update(newUpdate)
   }
 
   def delete(id: Long): Future[Int] = db.run {

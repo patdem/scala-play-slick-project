@@ -39,9 +39,9 @@ class VoucherRepository @Inject()(dbConfigProvider: DatabaseConfigProvider)(impl
     voucherTable.result
   }
 
-  def update(id: Long, new_voucher: Voucher): Future[Int] = db.run {
-    val new_update: Voucher = new_voucher.copy(id)
-    voucherTable.filter(_.id === id).update(new_update)
+  def update(id: Long, newVoucher: Voucher): Future[Int] = db.run {
+    val newUpdate: Voucher = newVoucher.copy(id)
+    voucherTable.filter(_.id === id).update(newUpdate)
   }
 
   def delete(id: Long): Future[Int] = db.run {
