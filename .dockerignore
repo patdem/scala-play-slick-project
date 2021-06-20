@@ -2,6 +2,7 @@ README.md
 .gitignore
 
 target
+!target/universal/shop-1.1.zip
 logs
 test
 /.idea
